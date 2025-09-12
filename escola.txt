@@ -1,0 +1,44 @@
+-- Comando pra criar o bancos de dados
+CREATE DATABASE sala_de_aula;
+-- habilitar o banco
+USE sala_de_aula;
+-- Comando criar tabale
+CREATE TABLE sala(
+id_sala INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(75),
+capacidade int
+);
+
+CREATE TABLE turma(
+id_turma INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(75),
+periodo VARCHAR(75),
+sala_id int
+);
+
+DROP TABLE turma;
+
+CREATE TABLE professor(
+id_professor INT NOT NULL AUTO_INCREMENT KEY,
+nome VARCHAR(75),
+formacao VARCHAR(75)
+);
+
+CREATE TABLE aula(
+id_aula INT NOT NULL AUTO_INCREMENT KEY,
+nome VARCHAR(75)
+);
+
+ALTER TABLE turma
+ADD FOREIGN KEY (sala_id)
+REFERENCES sala (id_sala);
+
+ALTER TABLE professor
+ADD COLUMN turma_id INT,
+ADD FOREIGN KEY (turma_id)
+REFERENCES turma (id_turma);
+
+ALTER TABLE sala
+ADD COLUMN professor_id INT,
+ADD FOREIGN KEY (professor_id)
+REFERENCES professor (id_professor);

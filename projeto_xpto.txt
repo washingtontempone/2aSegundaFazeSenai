@@ -1,0 +1,58 @@
+
+
+CREATE DATABASE projeto_xpto;
+
+USE projeto_xpto;
+
+CREATE TABLE empresa(
+id_empresa INT NOT NULL AUTO_INCREMENT KEY,
+codigo INT,
+nome VARCHAR(256),
+rua VARCHAR (256),
+numero int,
+bairro VARCHAR (256),
+cidade VARCHAR (256),
+estado VARCHAR (256),
+cep int
+);
+
+CREATE TABLE consultor(
+id_consultor INT NOT NULL AUTO_INCREMENT KEY,
+consultor VARCHAR (256),
+cpf BIGINT(11),
+especialidade VARCHAR (256),
+funcao_exercida VARCHAR (256)
+);
+
+CREATE TABLE unidade(
+id_unidade INT NOT NULL AUTO_INCREMENT KEY,
+nome_gerente VARCHAR (256),
+nome_supervisor VARCHAR (256)
+);
+
+CREATE TABLE departamento(
+id_departamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR (256),
+sigla VARCHAR (10),
+centro_custo INT,
+unidade_id INT,
+FOREIGN KEY (unidade_id)
+REFERENCES unidade (id_unidade)
+);
+
+CREATE TABLE projeto(
+id_projeto INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR (256),
+data_inicio DATE,
+data_fim DATE,
+valor DECIMAL (8,2),
+departamento_id INT,
+FOREIGN KEY (departamento_id)
+REFERENCES departamento (id_departamento),
+empresa_id INT,
+FOREIGN KEY (empresa_id)
+REFERENCES empresa (id_empresa),
+consultor_id INT,
+FOREIGN KEY (consultor_id)
+REFERENCES consultor (id_consultor)
+);

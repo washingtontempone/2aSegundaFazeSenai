@@ -1,0 +1,29 @@
+
+
+CREATE DATABASE usinagens_abc;
+
+USE usinagens_abc;
+
+CREATE TABLE categoria(
+id_categoria INT NOT NULL AUTO_INCREMENT KEY,
+descicao VARCHAR(75)
+);
+
+CREATE TABLE fornecedor(
+id_fornecedor INT NOT NULL AUTO_INCREMENT KEY,
+nome VARCHAR(75),
+nacionalidade VARCHAR(256)
+);
+
+CREATE TABLE peca(
+id_peca INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(256),
+peso DECIMAL(8,2),
+ano_fabricacao DATE,
+fornecedor_id INT,
+FOREIGN KEY (fornecedor_id)
+REFERENCES fornecedor (id_fornecedor),
+categoria_id INT,
+FOREIGN KEY (categoria_id)
+REFERENCES categoria (id_categoria)
+);
